@@ -18,15 +18,24 @@ This project is a React application that implements an infinite scroll feature u
 
 2. **Install the required dependencies:**
 
-Run the following command to install all necessary packages:
-
-   ```bash
-   npm install
-
-
-## Runing the Application
-
-    To start the development server:
+    Run the following comman to install packages:
 
     ```bash
-   npm run dev
+    npm install
+
+## Running the Application
+
+To start the development server:
+
+    ```bash
+    npm run dev  
+    ```
+
+This will start the development server and open the application in your default web browser at http://localhost:3000.
+
+## Troubleshooting
+
+If you encounter any issues during setup or running the application, please check the following:
+
+- Ensure Node.js and npm are correctly installed and updated.
+- Verify that your .env file contains the correct API key.
