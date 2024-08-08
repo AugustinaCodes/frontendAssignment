@@ -22,3 +22,11 @@ Run the following command to install all necessary packages:
 
    ```bash
    npm install
+
+
+## Runing the Application
+
+    To start the development server:
+
+    ```bash
+   npm run dev
