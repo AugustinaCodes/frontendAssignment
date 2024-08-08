@@ -1,0 +1,49 @@
+.imageContainer {
+    border-radius: 10%;
+    grid-gap: 10px;
+    position: relative;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+    object-fit: cover;
+}
+
+.hoverContent {
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.281);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: 0.6s;
+
+    hr {
+        border: 1px solid white;
+        width: 20%;
+    }
+
+    h1, h3, button {
+        color: white;
+    }
+
+    button {
+        background: none;
+        border: 1px solid white;
+        border-radius: 20px;
+        padding: 10px;
+        width: 15%;
+    }
+}
+
+.hoverContent:hover {
+    opacity: 1;
+}
