@@ -31,7 +31,7 @@ To start the development server:
     npm run dev  
     ```
 
-This will start the development server and open the application in your default web browser at http://localhost:3000.
+This will start the development server and open the application in your default web browser at http://localhost:5173.
 
 ## Troubleshooting
 
