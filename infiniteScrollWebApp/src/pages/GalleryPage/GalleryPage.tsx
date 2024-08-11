@@ -4,39 +4,49 @@ import styles from "./GalleryPage.module.scss";
 import { IPhotoInfo } from "../../types/photoInterfaces";
 import PhotoComponent from "../../components/PhotoComponent/PhotoComponent";
 
-/**
- * GalleryPage that fetches and displays a gallery of photos.
- * 
- * This page fetches a list of photos from the Flickr API, retrieves additional
- * information for each photo, and displays them in a gallery format. It handles
- * loading states and errors that might occur during the fetch operations.
- */
-
 const GalleryPage = () => {
   const [photos, setPhotos] = useState<IPhotoInfo[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1); 
+  const [hasMore, setHasMore] = useState(true); 
+
 
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const galleryPhotos = await getPhotos();
+        const galleryPhotos = await getPhotos(page);
         const detailedPhotoInfo = await Promise.all(
           galleryPhotos.map(async (photo) => {
             const photoInfo = await getPhotoInfo(photo.id);
             return photoInfo;
           })
         );
-        setPhotos(detailedPhotoInfo);
+        setPhotos((prevPhotos) => [...prevPhotos, ...detailedPhotoInfo]);
         setLoading(false);
+
+        if (galleryPhotos.length < 20) {
+          setHasMore(false)
+        }
       } catch (error) {
         console.log(error);
         setLoading(false);
       }
     };
     fetchPhotos();
-  }, []);
+  }, [page]);
 
-  if (loading) {
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight && hasMore) {
+        setPage((prevPage) => prevPage + 1)
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [hasMore])
+
+  if (loading && page === 1) {
     return <div>Loading...</div>;
   }
 
