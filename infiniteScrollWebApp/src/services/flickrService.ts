@@ -1,4 +1,4 @@
-import { IPhoto, IPhotoInfo, IFlickrPhoto } from "../types/photoInterfaces";
+import { IPhoto, IPhotoInfo, IFlickrPhoto, IFlickrPhotoSearchResponse, IFlickrPhotoInfoResponse } from "../types/photoInterfaces";
 
 const API_KEY = import.meta.env.VITE_FLICKR_API_KEY;
 const BASE_URL = import.meta.env.VITE_FLICKR_BASE_URL;
@@ -16,7 +16,7 @@ const PHOTOS_API_URL = `${BASE_URL}?method=flickr.photos.search&api_key=${API_KE
 
 export const getPhotos = async (page = 1, per_page = 20): Promise<IPhoto[]> => {
   const response = await fetch(`${PHOTOS_API_URL}&page=${page}&per_page=${per_page}`);
-  const data = await response.json();
+  const data: IFlickrPhotoSearchResponse = await response.json();
 
   if (data.stat === "ok") {
     return data.photos.photo.map((photo: IPhoto) => ({
@@ -40,7 +40,7 @@ export const getPhotoInfo = async (photoId: string): Promise<IPhotoInfo> => {
   const response = await fetch(
     `https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${API_KEY}&photo_id=${photoId}&format=json&nojsoncallback=1`
   );
-  const data = await response.json();
+  const data: IFlickrPhotoInfoResponse = await response.json();
 
   if (data.stat === "ok") {
     const photo = data.photo;
