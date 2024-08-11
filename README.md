@@ -18,7 +18,7 @@ This project is a React application that implements an infinite scroll feature u
 
 2. **Install the required dependencies:**
 
-    Run the following comman to install packages:
+    Run the following command to install packages:
 
     ```bash
     npm install
