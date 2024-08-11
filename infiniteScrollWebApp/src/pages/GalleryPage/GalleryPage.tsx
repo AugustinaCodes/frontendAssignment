@@ -7,9 +7,8 @@ import PhotoComponent from "../../components/PhotoComponent/PhotoComponent";
 const GalleryPage = () => {
   const [photos, setPhotos] = useState<IPhotoInfo[]>([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1); 
-  const [hasMore, setHasMore] = useState(true); 
-
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     const fetchPhotos = async () => {
@@ -25,7 +24,7 @@ const GalleryPage = () => {
         setLoading(false);
 
         if (galleryPhotos.length < 20) {
-          setHasMore(false)
+          setHasMore(false);
         }
       } catch (error) {
         console.log(error);
@@ -37,14 +36,18 @@ const GalleryPage = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight && hasMore) {
-        setPage((prevPage) => prevPage + 1)
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+          document.documentElement.offsetHeight &&
+        hasMore
+      ) {
+        setPage((prevPage) => prevPage + 1);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [hasMore])
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasMore]);
 
   if (loading && page === 1) {
     return <div>Loading...</div>;

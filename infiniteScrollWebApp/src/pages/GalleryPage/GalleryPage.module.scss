@@ -1,17 +1,17 @@
 @import "../../styles/variables.scss";
 
 .gallery {
-    display: grid;
-    padding: 20px;
-    grid-template-columns: 1fr;
-    row-gap: 40px;
-    column-gap: 40px;
+  display: grid;
+  padding: 20px;
+  grid-template-columns: 1fr;
+  row-gap: 40px;
+  column-gap: 40px;
 
-    @media (min-width: $breakpoint-tablet) {
-        grid-template-columns: repeat( 2, 1fr);
-    }
-    
-    @media (min-width: $breakpoint-desktop) {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  @media (min-width: $breakpoint-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

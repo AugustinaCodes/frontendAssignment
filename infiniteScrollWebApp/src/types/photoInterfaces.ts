@@ -19,7 +19,6 @@ export interface IFlickrPhoto {
   server: string;
 }
 
-
 // Represents the response structure from Flickr's photo search API
 export interface IFlickrPhotoSearchResponse {
   stat: string;
